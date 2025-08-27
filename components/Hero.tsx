@@ -25,6 +25,10 @@ export function Hero({ currentVertical }: HeroProps) {
 
   const displayVertical = verticals.find(v => v.id === selectedVertical) || verticals[0];
 
+  const handleVerticalChange = (value: string) => {
+    setSelectedVertical(value as "general" | "bfsi" | "bpo" | "tsl" | "ecommerce");
+  };
+
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gray-950">
       {/* Animated background elements */}
@@ -59,7 +63,7 @@ export function Hero({ currentVertical }: HeroProps) {
             {/* Vertical Switcher - Only show on general page */}
             {!currentVertical && (
               <div className="mb-8">
-                <Tabs value={selectedVertical} onValueChange={setSelectedVertical}>
+                <Tabs value={selectedVertical} onValueChange={handleVerticalChange}>
                   <TabsList className="grid w-full grid-cols-2 md:grid-cols-4 bg-gray-900/50 border border-gray-800/30">
                     {verticals.filter(v => v.id !== "general").map((vertical) => (
                       <TabsTrigger 
