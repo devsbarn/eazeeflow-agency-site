@@ -29,11 +29,24 @@ interface FormData {
   consent: boolean;
 }
 
+interface FormErrors {
+  fullName?: string;
+  email?: string;
+  company?: string;
+  role?: string;
+  vertical?: string;
+  teamSize?: string;
+  challenge?: string;
+  timeline?: string;
+  phone?: string;
+  consent?: string;
+}
+
 export function ApplicationForm({ currentVertical }: ApplicationFormProps) {
   const { toast } = useToast();
   const [isSubmitting, setIsSubmitting] = React.useState(false);
   const [isSubmitted, setIsSubmitted] = React.useState(false);
-  const [errors, setErrors] = React.useState<Partial<FormData>>({});
+  const [errors, setErrors] = React.useState<FormErrors>({});
   
   const [formData, setFormData] = React.useState<FormData>({
     fullName: "",
@@ -49,7 +62,7 @@ export function ApplicationForm({ currentVertical }: ApplicationFormProps) {
   });
 
   const validateForm = (): boolean => {
-    const newErrors: Partial<FormData> = {};
+    const newErrors: FormErrors = {};
     
     if (!formData.fullName.trim()) newErrors.fullName = "Full name is required";
     if (!formData.email.trim()) {
