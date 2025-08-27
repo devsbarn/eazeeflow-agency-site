@@ -6,24 +6,24 @@ import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { copy } from "@/content/copy";
-import { verticals, type Vertical } from "@/content/verticals";
+import { verticals, type Vertical, getVerticalById } from "@/content/verticals";
 
 interface HeroProps {
-  currentVertical?: Vertical;
+  verticalId?: string;
 }
 
-export function Hero({ currentVertical }: HeroProps) {
+export function Hero({ verticalId }: HeroProps) {
   const [selectedVertical, setSelectedVertical] = React.useState(
-    currentVertical?.id || "general"
+    verticalId || "general"
   );
 
   React.useEffect(() => {
-    if (currentVertical) {
-      setSelectedVertical(currentVertical.id);
+    if (verticalId) {
+      setSelectedVertical(verticalId);
     }
-  }, [currentVertical]);
+  }, [verticalId]);
 
-  const displayVertical = verticals.find(v => v.id === selectedVertical) || verticals[0];
+  const displayVertical = getVerticalById(selectedVertical) || verticals[0];
 
   const handleVerticalChange = (value: string) => {
     setSelectedVertical(value as "general" | "bfsi" | "bpo" | "tsl" | "ecommerce");
@@ -61,7 +61,7 @@ export function Hero({ currentVertical }: HeroProps) {
             </p>
 
             {/* Vertical Switcher - Only show on general page */}
-            {!currentVertical && (
+            {!verticalId && (
               <div className="mb-8">
                 <Tabs value={selectedVertical} onValueChange={handleVerticalChange}>
                   <TabsList className="grid w-full grid-cols-2 md:grid-cols-4 bg-gray-900/50 border border-gray-800/30">

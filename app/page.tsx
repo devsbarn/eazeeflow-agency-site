@@ -7,28 +7,19 @@ import { ComparisonTable } from "@/components/ComparisonTable";
 import { FinalCTA } from "@/components/FinalCTA";
 import { ApplicationForm } from "@/components/ApplicationForm";
 import { Footer } from "@/components/Footer";
-import { verticals } from "@/content/verticals";
+// import { verticals } from "@/content/verticals"; // No longer needed for root page
 
-interface PageProps {
-  searchParams: { vertical?: string; variant?: string };
-}
-
-export default function Home({ searchParams }: PageProps) {
-  // Handle query param vertical selection
-  const selectedVertical = searchParams.vertical 
-    ? verticals.find(v => v.id === searchParams.vertical)
-    : undefined;
-
+export default function Home() {
   return (
     <main className="min-h-screen bg-gray-950">
       <Header />
-      <Hero currentVertical={selectedVertical} />
+      <Hero />
       <BenefitsBar />
-      <HowItWorks currentVertical={selectedVertical} />
-      <Testimonials currentVertical={selectedVertical} />
+      <HowItWorks />
+      <Testimonials />
       <ComparisonTable />
       <FinalCTA />
-      <ApplicationForm currentVertical={selectedVertical} />
+      <ApplicationForm />
       <Footer />
     </main>
   );

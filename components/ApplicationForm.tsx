@@ -13,7 +13,7 @@ import { Loader2, CheckCircle } from "lucide-react";
 import { type Vertical } from "@/content/verticals";
 
 interface ApplicationFormProps {
-  currentVertical?: Vertical;
+  verticalId?: string;
 }
 
 interface FormData {
@@ -42,7 +42,7 @@ interface FormErrors {
   consent?: string;
 }
 
-export function ApplicationForm({ currentVertical }: ApplicationFormProps) {
+export function ApplicationForm({ verticalId }: ApplicationFormProps) {
   const { toast } = useToast();
   const [isSubmitting, setIsSubmitting] = React.useState(false);
   const [isSubmitted, setIsSubmitted] = React.useState(false);
@@ -53,7 +53,7 @@ export function ApplicationForm({ currentVertical }: ApplicationFormProps) {
     email: "",
     company: "",
     role: "",
-    vertical: currentVertical?.id || "",
+    vertical: verticalId || "",
     teamSize: "",
     challenge: "",
     timeline: "",

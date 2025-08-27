@@ -51,13 +51,13 @@ export default function VerticalPage({ params, searchParams }: VerticalPageProps
   return (
     <main className="min-h-screen bg-gray-950">
       <Header />
-      <Hero currentVertical={vertical} />
+      <Hero verticalId={vertical.id} />
       <BenefitsBar />
       <HowItWorks currentVertical={vertical} />
       <Testimonials currentVertical={vertical} />
       <ComparisonTable />
       <FinalCTA />
-      <ApplicationForm currentVertical={vertical} />
+      <ApplicationForm verticalId={vertical.id} />
       <Footer />
     </main>
   );
