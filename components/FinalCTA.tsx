@@ -1,8 +1,7 @@
-"use client";
-
+import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { BookingModal } from "@/components/BookingModal";
-import { ArrowRight, Zap, TrendingUp, Clock } from "lucide-react";
+import { ArrowRight, Zap } from "lucide-react";
+import { copy } from "@/content/copy";
 
 export function FinalCTA() {
   return (
@@ -14,53 +13,38 @@ export function FinalCTA() {
       </div>
 
       <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <div className="bg-gray-900/50 rounded-3xl p-12 backdrop-blur-sm border border-gray-800/30 shadow-2xl">
+        <div className="bg-gray-900/70 rounded-3xl p-8 md:p-12 backdrop-blur-sm border border-gray-800/30 shadow-2xl">
           <div className="flex items-center justify-center gap-3 mb-6">
-            <Zap className="w-10 h-10 text-amber-400" />
-            <h2 className="text-4xl md:text-5xl font-bold text-white">
-              Ready to Transform Your Business?
+            <Zap className="w-10 h-10 text-cyan-400" />
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white">
+              {copy.finalCta.title}
             </h2>
           </div>
 
-          <p className="text-xl text-gray-300 mb-8 leading-relaxed">
-            Join 200+ companies that have revolutionized their operations with our complete AI systems. 
-            Get your custom strategy session and discover how we can deliver measurable ROI for your organization.
-          </p>
-
-          <div className="flex flex-wrap justify-center gap-6 mb-10">
-            <div className="flex items-center gap-2 bg-gray-800/50 rounded-full px-4 py-2">
-              <TrendingUp className="w-5 h-5 text-emerald-400" />
-              <span className="text-white font-medium">Average 400% ROI</span>
-            </div>
-            <div className="flex items-center gap-2 bg-gray-800/50 rounded-full px-4 py-2">
-              <Clock className="w-5 h-5 text-blue-400" />
-              <span className="text-white font-medium">Results in 3-6 months</span>
-            </div>
-            <div className="flex items-center gap-2 bg-gray-800/50 rounded-full px-4 py-2">
-              <Zap className="w-5 h-5 text-cyan-400" />
-              <span className="text-white font-medium">Enterprise Security</span>
-            </div>
+          <div className="space-y-6 mb-10">
+            {copy.finalCta.body.split('\n\n').map((paragraph, index) => (
+              <p key={index} className="text-lg md:text-xl text-gray-300 leading-relaxed">
+                {paragraph}
+              </p>
+            ))}
           </div>
 
-          <BookingModal>
+          <div className="mb-8">
             <Button 
-              size="lg" 
-              className="bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-600 hover:to-blue-700 text-white px-12 py-6 text-xl font-semibold rounded-2xl shadow-2xl hover:shadow-cyan-500/25 transition-all duration-300 transform hover:scale-105 mb-4"
+              asChild
+              size="lg"
+              className="bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-600 hover:to-blue-700 text-white px-8 md:px-12 py-4 md:py-6 text-lg md:text-xl font-semibold rounded-2xl shadow-2xl hover:shadow-cyan-500/25 transition-all duration-300 transform hover:scale-105"
             >
-              Book Your Free AI Strategy Session
-              <ArrowRight className="ml-3 w-6 h-6" />
+              <Link href="#apply">
+                {copy.finalCta.button}
+                <ArrowRight className="ml-3 w-6 h-6" />
+              </Link>
             </Button>
-          </BookingModal>
-
-          <p className="text-gray-400 text-lg">
-            Free 30-minute consultation • Custom ROI analysis • No commitment required
-          </p>
-
-          <div className="mt-8 pt-8 border-t border-gray-800/50">
-            <p className="text-gray-500 text-sm">
-              Trusted by Fortune 500 companies and growing businesses worldwide
-            </p>
           </div>
+
+          <p className="text-gray-400 text-base md:text-lg">
+            {copy.finalCta.disclaimer}
+          </p>
         </div>
       </div>
     </section>
